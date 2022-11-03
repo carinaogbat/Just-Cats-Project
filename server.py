@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from model import db, User, Photos, Likes, Notifications, Comments, Follows, CommentNotifications, connect_to_db
+from model import db, User, Photo, Like, Notification, Comment, Follower, CommentNotification, connect_to_db
 
 app = Flask(__name__)
 

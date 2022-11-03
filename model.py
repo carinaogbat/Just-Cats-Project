@@ -5,6 +5,18 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    flask_app.config["SQLALCHEMY_ECHO"] = echo
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print("Connected to the db!")
+
+
+
 class User(db.Model):
     """A User"""
 
@@ -17,7 +29,7 @@ class User(db.Model):
     comment_notification = db.Column(db.Integer, db.ForeignKey("comment.comment_id"))
     fname = db.Column(db.String)
     lname = db.Column(db.String)
-    email = db.Column(db.String, Unique=True)
+    email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     displayname = db.Column(db.String(15))
 
@@ -30,7 +42,7 @@ class Follower(db.Model):
 
     __tablename__ = "followers"
 
-    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"), primary_key=True)
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
 
@@ -103,4 +115,10 @@ class CommentNotification(db.Model):
 
     def __repr__(self):
         return f'Comment ID={self.comment_notification_id}, Comment Text={self.comment_text}'
+
+
+if __name__ == "__main__":
+    from server import app
+
+    connect_to_db(app, "cats")
 
