@@ -24,14 +24,18 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     likes = db.Column(db.Integer, db.ForeignKey("likes.like_id"))
-    follower = db.Column(db.Integer, db.ForeignKey("follow.follow_id"))
+    follower_id = db.Column(db.Integer, db.ForeignKey("follower.follower_id"))
     like_notification = db.Column(db.Integer, db.ForeignKey("like.like_id"))
     comment_notification = db.Column(db.Integer, db.ForeignKey("comment.comment_id"))
     fname = db.Column(db.String)
-    lname = db.Column(db.String)
+    petname = db.Column(db.String)
+    bio = db.Column(db.Text)
+    profile_img = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     displayname = db.Column(db.String(15))
+
+    follower = db.relationship("Follower", back_populates="users")
 
     def __repr__(self):
         return f'<User ID={self.user_id}, Name= {self.fname} {self.lname}, Email={self.email}'
@@ -42,12 +46,13 @@ class Follower(db.Model):
 
     __tablename__ = "followers"
 
-    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"), primary_key=True)
+    follower_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    follows_user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
 
     def __repr__(self):
-        return f'<User Following ID={self.user_id}'
+        return f'<User USER ID ={self.follower_id} Following USER ID={self.follows_user_id}'
 
         
         
