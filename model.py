@@ -120,5 +120,5 @@ class CommentNotification(db.Model):
 if __name__ == "__main__":
     from server import app
 
-    connect_to_db(app, "cats")
+    connect_to_db(app)
 
