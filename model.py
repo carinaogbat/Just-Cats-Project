@@ -1,20 +1,7 @@
-import os
-import json
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-
-def connect_to_db(flask_app, db_uri="postgresql:///just-cats", echo=True):
-    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
-    flask_app.config["SQLALCHEMY_ECHO"] = echo
-    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-    db.app = flask_app
-    db.init_app(flask_app)
-
-    print("Connected to the db!")
-
 
 
 class User(db.Model):
@@ -121,6 +108,17 @@ class CommentNotification(db.Model):
 
     def __repr__(self):
         return f'Comment ID={self.comment_notification_id}, Comment Text={self.comment_text}'
+
+
+def connect_to_db(flask_app, db_uri="postgresql:///just-cats", echo=True):
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    flask_app.config["SQLALCHEMY_ECHO"] = echo
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print("Connected to the db!")
 
 
 if __name__ == "__main__":
