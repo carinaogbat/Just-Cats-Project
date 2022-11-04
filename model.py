@@ -33,12 +33,12 @@ class User(db.Model):
     profile_img = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    displayname = db.Column(db.String(15))
+    username = db.Column(db.String(15), unique=True)
 
-    followers = db.relationship("Follower", back_populates="users")
+
 
     def __repr__(self):
-        return f'<User ID={self.user_id}, Name= {self.fname} {self.lname}, Email={self.email}'
+        return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email}'
 
 
 class Follower(db.Model):
@@ -51,7 +51,7 @@ class Follower(db.Model):
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
 
-    users_followed = db.relationship("User", back_populates="followers")
+
 
     def __repr__(self):
         return f'<User USER ID ={self.follower_id} Following USER ID={self.follows_user_id}'
