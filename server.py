@@ -8,7 +8,7 @@ app = Flask(__name__)
 def homepage():
     """Returns homepage"""
 
-    return render_template('homepage.html')
+    return render_template('index.html')
 
 # @app.route(''):
 ### def user_profile():

@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///just-cats", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -35,7 +35,7 @@ class User(db.Model):
     password = db.Column(db.String)
     displayname = db.Column(db.String(15))
 
-    follower = db.relationship("Follower", back_populates="users")
+    followers = db.relationship("Follower", back_populates="users")
 
     def __repr__(self):
         return f'<User ID={self.user_id}, Name= {self.fname} {self.lname}, Email={self.email}'
@@ -50,6 +50,8 @@ class Follower(db.Model):
     follows_user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
+
+    users_followed = db.relationship("User", back_populates="followers")
 
     def __repr__(self):
         return f'<User USER ID ={self.follower_id} Following USER ID={self.follows_user_id}'
@@ -106,7 +108,6 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f'Comment ID = {self.comment_id}, Commented By={self.user_id}'
-
 
 
 
