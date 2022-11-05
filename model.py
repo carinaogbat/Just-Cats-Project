@@ -9,10 +9,10 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
     likes = db.Column(db.Integer, db.ForeignKey("likes.like_id"))
-    follower_id = db.Column(db.Integer, db.ForeignKey("follower.follower_id"))
-    like_notification = db.Column(db.Integer, db.ForeignKey("like.like_id"))
+    follower_id = db.Column(db.Integer, db.ForeignKey("followers.follower_id"))
+    like_notification = db.Column(db.Integer, db.ForeignKey("likenotifications.like_notification_id"))
     comment_notification = db.Column(db.Integer, db.ForeignKey("comment.comment_id"))
     fname = db.Column(db.String)
     petname = db.Column(db.String)
@@ -21,7 +21,6 @@ class User(db.Model):
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
     username = db.Column(db.String(15), unique=True)
-
 
 
     def __repr__(self):
@@ -63,6 +62,8 @@ class Photo(db.Model):
 class Like(db.Model):
     """A Like"""
 
+    __tablename__ = "likes"
+
     like_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     photo_id = db.Column(db.Integer, db.ForeignKey("photo.photo_id"))
@@ -72,8 +73,10 @@ class Like(db.Model):
         return f'Like ID={self.like_id} Liked By={self.user_id}'
 
 
-class Notification(db.Model):
+class LikeNotification(db.Model):
     """A like notification"""
+
+    __tablename__ = "likenotifications"
 
     like_notification_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
