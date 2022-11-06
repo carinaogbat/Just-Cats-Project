@@ -1,4 +1,8 @@
+
+
 // MVP create app that:
+
+// sign in and out
 
 // creates a profile
 
@@ -16,10 +20,26 @@
 
 // comment on a picture
 
+
+
 function App(){
+    function HomePage(){
+        return <h2>Home</h2>;
+    }
+    function UserProfile(){
+        return <h2>User Profile</h2>
+    }
+    function Explore(){
+        return <h2>Explore Page</h2>
+    }
+    function ViewProfile(){
+        return <h2>User Profile</h2>
+    }
 
 }
-return 
 
-ReactDOM.render(<App/>, document.querySelector('#root'))
+
+
+
+ReactDOM.render(<App />, document.querySelector('#root'));
 
