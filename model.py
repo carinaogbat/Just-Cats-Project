@@ -22,7 +22,14 @@ class User(db.Model):
     password = db.Column(db.String)
     username = db.Column(db.String(15), unique=True)
 
-
+    db.relationship("Like", back_populates="likes")
+    db.relationship("Follower", back_populates="followers")
+    db.relationship("LikeNotification", back_populates="like_notifications")
+    db.relationship("Comment", back_populates="comments")
+    db.relationship("CommentNotification", back_populates="comment_notifications")
+    db.relationship("Photo", back_populates="photos")
+    
+    
     def __repr__(self):
         return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email}>'
 
@@ -37,7 +44,7 @@ class Follower(db.Model):
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
 
-
+    db.relationship("User", back_populates="user")
 
     def __repr__(self):
         return f'<User USER ID ={self.follower_id} Following USER ID={self.follows_user_id}>'
@@ -56,6 +63,8 @@ class Photo(db.Model):
     url = db.Column(db.String)
     post_date = db.Column(db.DateTime)
 
+    db.relationship("User", back_populates="user")
+
     def __repr__(self):
         return f'<Photo ID={self.photo_id}, URL={self.url}>'
 
@@ -69,6 +78,8 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     num_likes = db.Column(db.Integer)
+
+    db.relationship("User", back_populates="user")
 
     def __repr__(self):
         return f'<Like ID={self.like_id} Liked By={self.user_id}>'
@@ -85,6 +96,9 @@ class LikeNotification(db.Model):
     photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     notification_text = db.Column(db.String)
 
+    db.relationship("User", back_populates="user")
+
+
     def __repr__(self):
         return f'<Like ID={self.like_notification_id} Liked By={self.user_id}>'
 
@@ -99,6 +113,8 @@ class Comment(db.Model):
     photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     comment_text = db.Column(db.Text)
 
+    db.relationship("User", back_populates="user")
+
     def __repr__(self):
         return f'<Comment ID = {self.comment_id}, Commented By={self.user_id}>'
 
@@ -112,6 +128,8 @@ class CommentNotification(db.Model):
     comment_notification_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
+
+    db.relationship("User", back_populates="user")
 
     def __repr__(self):
         return f'<Comment ID={self.comment_notification_id}, Comment Text={self.comment_text}>'
