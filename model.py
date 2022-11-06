@@ -9,11 +9,11 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True, nullable=False)
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     likes = db.Column(db.Integer, db.ForeignKey("likes.like_id"))
     follower_id = db.Column(db.Integer, db.ForeignKey("followers.follower_id"))
-    like_notification = db.Column(db.Integer, db.ForeignKey("likenotifications.like_notification_id"))
-    comment_notification = db.Column(db.Integer, db.ForeignKey("comment.comment_id"))
+    like_notification = db.Column(db.Integer, db.ForeignKey("like_notifications.like_notification_id"))
+    comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
     fname = db.Column(db.String)
     petname = db.Column(db.String)
     bio = db.Column(db.Text)
@@ -24,7 +24,7 @@ class User(db.Model):
 
 
     def __repr__(self):
-        return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email}'
+        return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email}>'
 
 
 class Follower(db.Model):
@@ -33,30 +33,31 @@ class Follower(db.Model):
     __tablename__ = "followers"
 
     follower_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    follows_user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
+    follows_user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
 
 
 
     def __repr__(self):
-        return f'<User USER ID ={self.follower_id} Following USER ID={self.follows_user_id}'
+        return f'<User USER ID ={self.follower_id} Following USER ID={self.follows_user_id}>'
 
         
         
 class Photo(db.Model):
     """A photo"""
+
     __tablename__ = "photos"
 
     photo_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    like_id = db.Column(db.Integer, db.ForeignKey("like.like_id"))
-    comment_id = db.Column(db.Integer, db.ForeignKey("comment.comment_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    like_id = db.Column(db.Integer, db.ForeignKey("likes.like_id"))
+    comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
     url = db.Column(db.String)
     post_date = db.Column(db.DateTime)
 
     def __repr__(self):
-        return f'<Photo ID={self.photo_id}, URL={self.url}'
+        return f'<Photo ID={self.photo_id}, URL={self.url}>'
 
 
 class Like(db.Model):
@@ -65,55 +66,58 @@ class Like(db.Model):
     __tablename__ = "likes"
 
     like_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    photo_id = db.Column(db.Integer, db.ForeignKey("photo.photo_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     num_likes = db.Column(db.Integer)
 
     def __repr__(self):
-        return f'Like ID={self.like_id} Liked By={self.user_id}'
+        return f'<Like ID={self.like_id} Liked By={self.user_id}>'
 
 
 class LikeNotification(db.Model):
     """A like notification"""
 
-    __tablename__ = "likenotifications"
+    __tablename__ = "like_notifications"
 
     like_notification_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    like_id = db.Column(db.Integer, db.ForeignKey("like.like_id"))
-    photo_id = db.Column(db.Integer, db.ForeignKey("photo.photo_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    like_id = db.Column(db.Integer, db.ForeignKey("likes.like_id"))
+    photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     notification_text = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Like ID={self.like_notification_id} Liked By={self.user_id}'
+        return f'<Like ID={self.like_notification_id} Liked By={self.user_id}>'
 
 
 class Comment(db.Model):
     """A comment on a photo"""
 
+    __tablename__ = "comments"
+
     comment_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    photo_id = db.Column(db.Integer, db.ForeignKey("photo.photo_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     comment_text = db.Column(db.Text)
 
     def __repr__(self):
-        return f'Comment ID = {self.comment_id}, Commented By={self.user_id}'
+        return f'<Comment ID = {self.comment_id}, Commented By={self.user_id}>'
 
 
 
 class CommentNotification(db.Model):
     """A comment notification"""
 
+    __tablename__ = "comment_notifications"
+
     comment_notification_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    like_notification_id = db.Column(db.Integer, db.ForeignKey("like.like_notification_id"))
-    comment_id = db.Column(db.Integer, db.ForeignKey("comment.comment_id"))
-    comment_text = db.Column(db.Text, db.ForeignKey("comment.comment_text"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
 
     def __repr__(self):
-        return f'Comment ID={self.comment_notification_id}, Comment Text={self.comment_text}'
+        return f'<Comment ID={self.comment_notification_id}, Comment Text={self.comment_text}>'
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///just-cats", echo=True):
+def connect_to_db(flask_app, db_uri="postgresql:///just_cats", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False

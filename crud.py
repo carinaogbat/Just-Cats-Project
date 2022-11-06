@@ -1,9 +1,11 @@
-from model import db, User, Photo, Like, Notification, Comment, Follower, CommentNotification, connect_to_db
+from model import db, User, Photo, LikeNotification, Comment, Follower, CommentNotification, connect_to_db
 
 
 
 # create a user 
-def create_user(fname, email):
+def create_user(fname, email, likes=None, follower_id=None,
+ like_notification=None, comment_id=None, petname=None, bio=None,
+ profile_img=None, password=None, username=None):
     """Creates a User"""
 
     user = User(fname=fname)
