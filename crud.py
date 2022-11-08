@@ -8,7 +8,8 @@ follower_id=None, like_notification=None,
 comment_id=None, bio=None, password=None, username=None):
     """Creates a User"""
 
-    user = User(fname=fname)
+    user = User(fname=fname, profile_img=profile_img, 
+    petname=petname, email=email)
 
     return user
 
