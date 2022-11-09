@@ -62,6 +62,7 @@ class Photo(db.Model):
     comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
     url = db.Column(db.String)
     post_date = db.Column(db.DateTime)
+    public = db.Column(db.Boolean)
 
     db.relationship("User", back_populates="user")
 
