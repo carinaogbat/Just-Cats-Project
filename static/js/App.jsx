@@ -41,8 +41,8 @@ const App = (props) => {
     return (
         <div>
         <h1>Welcome to Just Cats</h1>
-        <h2>More Components</h2>
-        <h3>More Components</h3>
+        <div>More Components</div>
+        <div>More Components</div>
         </div>
     )
 
