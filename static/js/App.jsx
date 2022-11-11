@@ -1,58 +1,38 @@
+const Link = ReactRouterDOM.Link;
+const Route = ReactRouterDOM.Route;
 
+const App = () => (
+  <ReactRouterDOM.HashRouter>
+    <ul>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/login">Login</Link></li>
+      <li><Link to="/register">Register</Link></li>
+      <li><Link to="/myprofle">My Profile</Link></li>
+      <li><Link to="/userprofile">User Profle</Link></li>
+    </ul>
 
-// MVP create app that:
+    <Route path="/" exact component={Home} />
+    <Route path="/login" component={Login} />
+    <Route path="/register" component={Register} />
+    <Route path="/myprofile" component={MyProfile} />
+    <Route path="/userprofile" component={UserProfile} />
+    <Route path="/myphoto" component={MyPhoto} />
+  </ReactRouterDOM.HashRouter>
+)
 
-// sign in and out
+const Home = () => <h1>Home</h1>
+const Login = () => <h1>Login</h1>
+const Register = () => <h1>Register</h1>
+const MyProfile = () => <div><h1>Username Profile</h1>
+    <h2>wrapping whatever I want in divs to test it out</h2>
+    </div>
+const UserProfile = () => <div><h1>Other User Profile</h1>
+<h2>Putting more things on user profile</h2>
+</div>
+const MyPhoto = () => <h1>My cute photo</h1>
 
-// creates a profile
-
-// uploads pictures to profile
-
-// view your pictures
-
-// lets you follow a profile
-
-// lets you view feed of accounts followed
-
-// Nice to Haves:
-
-// like a picture
-
-// comment on a picture
-// const HomePage(props){
-//     return <h2>Home</h2>;
-// }
-// const UserProfile(props){
-//     return <h2>User Profile</h2>
-// }
-// function Explore(props){
-//     return <h2>Explore Page</h2>
-// }
-// function ViewProfile(props){
-//     return <h2>User Profile</h2>
-// }
-const NavBar = (props) => {
-
+function Hello(props) {
+    return <p>Welcome {props.username}</p>
 }
-
-
-
-const App = (props) => {
-    return (
-        <div>
-        <h1>Welcome to Just Cats</h1>
-        <div>More Components</div>
-        <div>More Components</div>
-        </div>
-    )
-
-}
-// App will just render your components
-
-
-
-
-
 
 ReactDOM.render(<App />, document.querySelector('#root'));
-
