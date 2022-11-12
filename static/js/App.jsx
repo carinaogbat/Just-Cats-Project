@@ -1,5 +1,5 @@
 const Link = ReactRouterDOM.Link;
-// const Route = ReactRouterDOM.Route;
+
 
 
 // Components Wanted:
@@ -122,6 +122,8 @@ function App() {
     return (
 
         <ReactRouterDOM.BrowserRouter>
+            <NavBar />
+            <React.Fragment>
             <ReactRouterDOM.Route exact path="/">
               <Homepage />
             </ReactRouterDOM.Route>
@@ -129,11 +131,12 @@ function App() {
                 <Login />
             </ReactRouterDOM.Route>
             <ReactRouterDOM.Route exact path="/myprofile">
-              <Profile />
+              <MyProfile />
             </ReactRouterDOM.Route>
             <ReactRouterDOM.Route exact path="/signup">
                 <SignUp />
             </ReactRouterDOM.Route>
+            </React.Fragment>
         </ReactRouterDOM.BrowserRouter>
       );
 }
