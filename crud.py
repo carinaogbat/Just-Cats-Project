@@ -1,12 +1,10 @@
 from model import db, User, Photo, LikeNotification, Comment, Follower, CommentNotification, connect_to_db
 
 # create a user 
-def create_user(fname, petname, email, likes=None, 
-follower_id=None, like_notification=None, 
-comment_id=None, bio=None, password=None, username=None):
+def create_user(fname, profile_img, petname, email):
     """Creates a User"""
 
-    user = User(fname=fname, 
+    user = User(fname=fname, profile_img=profile_img,
     petname=petname, email=email)
 
     return user
@@ -22,6 +20,11 @@ def get_user_by_username(username):
     """Returns a user by Username"""
 
     return User.query.get(username)
+
+def get_all_public_user_photos():
+    """Return all public user photos"""
+
+    return Photo.query.all()
 
 
 
