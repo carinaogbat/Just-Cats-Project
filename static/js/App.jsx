@@ -17,13 +17,13 @@ function NavBar (props) {
     return (
         <nav>
             <ReactRouterDOM.Link to="/">
-                <span> Home </span>
+                <span>  Home  </span>
             </ReactRouterDOM.Link>
             <ReactRouterDOM.Link to="explore">
-                <span> Explore </span>
+                <span>  Explore  </span>
             </ReactRouterDOM.Link>
             <ReactRouterDOM.Link to="myprofile">
-                <span> My Profile </span>
+                <span>  My Profile  </span>
             </ReactRouterDOM.Link>
 
         </nav>
@@ -33,13 +33,13 @@ function NavBar (props) {
 
 function Homepage(props) {
     return (
-    <div>
+    <React.Fragment>
     <h1>Home</h1>
-    <li><Link to="/login">Log In Here</Link></li>
-    <li><Link to="/signup">Or Sign Up Here</Link></li>
+    <Link to="/login">Log In Here</Link>
+    <Link to="/signup">Or Sign Up Here</Link>
     <p>Not sure if you want to sign up yet?</p>
-    <li><Link to="/explore">Look at cute cats here!</Link></li>
-    </div>
+    <Link to="/explore">Look at cute public cats here!</Link>
+    </React.Fragment>
     )
 }
 
@@ -49,8 +49,9 @@ function Explore(props) {
 
                 <ul>
                     <li>listing</li>
-                    <li>all database</li>
-                    <li>users here</li>
+                    <li>all public database</li>
+                    <li>user photos here</li>
+                    <li>You don't need to be logged in for this, these are public photos</li>
                 </ul>
 
 
@@ -64,8 +65,10 @@ function SignUp(props) {
             <React.Fragment>
             <h2>Lets sign you up!</h2>
             <p>I will need to put your sign up form here</p>
-                <p>Wrong page?</p>
-            <li><Link to="/login">Log In Here</Link></li>
+            <p>I will need to add you to the database</p>
+            <p>I will need to log you into session</p>
+            <p>Wrong page?</p>
+            <Link to="/login">Log In Here</Link>
                 
 
             </React.Fragment>
@@ -80,10 +83,13 @@ function Login(props) {
         
         <React.Fragment>
         <h1> Lets log you in:</h1>
-        <p>I need to put login form here</p>
+        <p>I need to put your login form here</p>
+        <p>I need to verify your login info</p>
+        <p>then I need to make sure I put you in session</p>
+        <p>want to log out? I'll put reusable logout component here</p>
         <h2>Are you not a user?</h2>
             <p>we can sign you up</p>
-        <li><Link to="/signup">You can click here to go to sign up page</Link></li>
+        <Link to="/signup">You can click here to go to sign up page</Link>
         </React.Fragment>
         
         )
@@ -92,6 +98,8 @@ function Login(props) {
 function MyProfile(props) {
     return (
         <React.Fragment>
+    <p>I have to make sure you're in the session, else return you to login</p>
+    <p>want to log out? I'll put reusable logout component here</p>
     <h1>Here's your profile</h1>
     <p>I have your username and profile picture displayed at the top</p>
     <p> heres who's following you and who you're following</p>
@@ -111,6 +119,8 @@ function MyProfile(props) {
 function ViewOtherProfile(props) {
     return (
         <React.Fragment>
+        <p>I have to make sure you're in the session, else return you to login</p>
+        <p>want to log out? I'll put reusable logout component here</p>
         <h3>look at this other users profile here </h3>
         <h5>awwww here's all their cute cat pictures</h5>
         </React.Fragment>
@@ -120,6 +130,8 @@ function ViewOtherProfile(props) {
 function ViewOwnedUserImage(props) {
     return (
         <React.Fragment>
+            <p>I have to make sure you're in the session, else return you to login</p>
+            <p>want to log out? I'll put reusable logout component here</p>
             <p>Awwww look at my cute picture</p>
             <p>Do i want to delete my picture?</p>
         </React.Fragment>
@@ -130,6 +142,8 @@ function ViewOwnedUserImage(props) {
 function ViewUnownedUserImage(props){
     return (
         <React.Fragment>
+            <p>I have to make sure you're in the session, else return you to login</p>
+            <p>want to log out? I'll put reusable logout component here</p>
             <p>this is not my picture I can like it but not delete it</p>
         </React.Fragment>
     )
@@ -139,6 +153,8 @@ function ViewUnownedUserImage(props){
 function Following(props) {
     return (
         <React.Fragment>
+            <p>I have to make sure you're in the session, else return you to login</p>
+            <p>want to log out? I'll put reusable logout component here</p>
             <ul>
                 <li> here's a list </li>
                 <li> of users profiles and photos</li>
