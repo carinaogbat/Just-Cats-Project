@@ -82,7 +82,9 @@ function Login(props) {
     return (
         
         <React.Fragment>
+            
         <h1> Lets log you in:</h1>
+        <LogInButton />
         <p>I need to put your login form here</p>
         <p>I need to verify your login info</p>
         <p>then I need to make sure I put you in session</p>
@@ -100,6 +102,7 @@ function Login(props) {
 function MyProfile(props) {
     return (
         <React.Fragment>
+            <Hello username="test user"/>
     <p>I have to make sure you're in the session, else return you to login</p>
     <p>want to log out? I'll put reusable logout component here</p>
     <h1>Here's your profile</h1>
@@ -177,7 +180,27 @@ function Following(props) {
 
 function Hello(props) {
     return (
-    <p>Welcome {props.username}</p>
+    <p>Welcome {props.username}!</p>
+    )
+}
+
+function LogInButton() {
+    return (
+        <button type="button" onSubmit={LogInForm}>
+        Log In
+        </button>
+    )
+}
+
+function LogInForm() {
+    return (
+        <div className="form">
+        <form>
+            <input type="text" name="username" required></input>
+            <input type="password" name="password" required></input>
+            <input type="submit"></input>
+        </form>
+        </div>
     )
 }
 

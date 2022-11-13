@@ -10,11 +10,11 @@ def homepage():
 
     return render_template('index.html')
 
-@app.route("/exploreplage", methods="POST")
-def get_all_public_photos_json():
-    """Gets all public user photos"""
+# @app.route("/exploreplage", methods="POST")
+# def get_all_public_photos_json():
+#     """Gets all public user photos"""
 
-    return jsonify({"Photos": just_cats["profile_url"]})
+#     return jsonify({"Photos": just_cats["profile_url"]})
 
 
 
