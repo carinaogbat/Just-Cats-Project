@@ -16,13 +16,13 @@ const Link = ReactRouterDOM.Link;
 function NavBar (props) {
     return (
         <nav>
-            <ReactRouterDOM.Link to="/">
+            <ReactRouterDOM.Link to="/" className="navbar">
                 <span>  Home  </span>
             </ReactRouterDOM.Link>
-            <ReactRouterDOM.Link to="explore">
+            <ReactRouterDOM.Link to="explore" className="navbar">
                 <span>  Explore  </span>
             </ReactRouterDOM.Link>
-            <ReactRouterDOM.Link to="myprofile">
+            <ReactRouterDOM.Link to="myprofile" className="navbar">
                 <span>  My Profile  </span>
             </ReactRouterDOM.Link>
 
@@ -35,8 +35,8 @@ function Homepage(props) {
     return (
     <React.Fragment>
     <h1>Home</h1>
-    <Link to="/login">Log In Here</Link>
-    <Link to="/signup">Or Sign Up Here</Link>
+    <li><Link to="/login">Log In Here</Link></li>
+    <li><Link to="/signup">Or Sign Up Here</Link></li>
     <p>Not sure if you want to sign up yet?</p>
     <Link to="/explore">Look at cute public cats here!</Link>
     </React.Fragment>
@@ -50,7 +50,7 @@ function Explore(props) {
                 <ul>
                     <li>listing</li>
                     <li>all public database</li>
-                    <li>user photos here</li>
+                    <li>user photos here as large images</li>
                     <li>You don't need to be logged in for this, these are public photos</li>
                 </ul>
 
@@ -86,7 +86,9 @@ function Login(props) {
         <p>I need to put your login form here</p>
         <p>I need to verify your login info</p>
         <p>then I need to make sure I put you in session</p>
-        <p>want to log out? I'll put reusable logout component here</p>
+        <p>Once you're in session I will have to redirect you to your profile</p>
+        <Link to="/myprofile">This link will really be a redirect to your profile</Link>
+
         <h2>Are you not a user?</h2>
             <p>we can sign you up</p>
         <Link to="/signup">You can click here to go to sign up page</Link>
@@ -107,7 +109,10 @@ function MyProfile(props) {
     <ul>
         <li>lets list your cute</li>
         <li> cat pictures here</li>
+        <li>these are all as thumbnails</li>
     </ul>
+    <p>you will also be able to click on your thumbnail pictures</p>
+    <Link to="/viewowneduserimage">In case you want to delete it</Link>
     </React.Fragment>
 
     )
@@ -122,7 +127,8 @@ function ViewOtherProfile(props) {
         <p>I have to make sure you're in the session, else return you to login</p>
         <p>want to log out? I'll put reusable logout component here</p>
         <h3>look at this other users profile here </h3>
-        <h5>awwww here's all their cute cat pictures</h5>
+        <h5>awwww here's all their cute cat pictures as thumbnails</h5>
+        <Link to="/viewunowneduserimage">You can click here to make the photo big</Link>
         </React.Fragment>
     )
 }
@@ -133,6 +139,7 @@ function ViewOwnedUserImage(props) {
             <p>I have to make sure you're in the session, else return you to login</p>
             <p>want to log out? I'll put reusable logout component here</p>
             <p>Awwww look at my cute picture</p>
+            <p>this picture is large because I clicked it from my profile thumbnail</p>
             <p>Do i want to delete my picture?</p>
         </React.Fragment>
     )
@@ -145,6 +152,7 @@ function ViewUnownedUserImage(props){
             <p>I have to make sure you're in the session, else return you to login</p>
             <p>want to log out? I'll put reusable logout component here</p>
             <p>this is not my picture I can like it but not delete it</p>
+            <p>I clicked it from the thumblist now it is large</p>
         </React.Fragment>
     )
 
@@ -160,8 +168,9 @@ function Following(props) {
                 <li> of users profiles and photos</li>
                 <li> who I am following!</li>
             </ul>
-            <p>now you'll be able to click the photo</p>
-            <Link to="ViewOtherProfile">And see someone else's profile</Link>
+            <>these photos will be displayed large and not as thumbnails</>
+            <p>now you'll be able to like the photo</p>
+            <Link to="ViewOtherProfile">And go to the username linked to the photo</Link>
         </React.Fragment>
     )
 }
