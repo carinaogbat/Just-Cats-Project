@@ -21,10 +21,16 @@ def get_user_by_username(username):
 
     return User.query.get(username)
 
-def get_all_public_user_photos():
-    """Return all public user photos"""
+def get_all_users():
+    """Return all users"""
 
-    return Photo.query.all()
+    return User.query.all()
+
+
+        
+
+
+    
 
 
 

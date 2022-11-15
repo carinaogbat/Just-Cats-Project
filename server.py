@@ -11,13 +11,18 @@ def homepage():
 
     return render_template('index.html')
 
-# @app.route("/api/userphotos, methods="POST")
-# def get_all_public_photos_json():
-#     """Gets all public user photos"""
 
-    all_user_photos = crud.get_all_public_user_photos()
+@app.route("/api/explorepagephotos", methods="POST")
+def get_all_public_photos_json():
+    """Gets all public user photos returned in json"""
 
-#     return jsonify({all_user_photos})
+    users = crud.get_all_users
+    user_profile_pics = []
+    for user in users:
+        user_profile_pics.append({"profile_pic":user.profile_url})
+    return jsonify(user_profile_pics)
+
+
 
 
 
