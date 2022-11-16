@@ -44,8 +44,23 @@ function Homepage(props) {
 }
 
 function Explore(props) {
+    const [profileImgs, setProfileImgs] = React.useState([])
+    React.useEffect(() => {
+        fetch('/api/explorepagephotos')
+        .then((response) => response.json())
+        .then((result) => {
+            setProfileImgs(result);
+        });
+
+    }, []);
+
+    
     return (
         <React.Fragment>
+
+            <div>
+
+            </div>
 
                 <ul>
                     <li>listing</li>
@@ -57,6 +72,10 @@ function Explore(props) {
 
         </React.Fragment>
     )
+}
+
+function RenderProfilePics() {
+    return
 }
 
 
