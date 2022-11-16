@@ -34,6 +34,14 @@ class User(db.Model):
         return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email}>'
 
 
+
+    def as_dict(self):
+        return {"user_id":self.user_id, "fname":self.fname, "petname":self.petname,
+        "bio":self.bio, "profile_img":self.profile_img, "email":self.email,
+        "username":self.username}
+
+
+
 class Follower(db.Model):
     """A Follower"""
 
