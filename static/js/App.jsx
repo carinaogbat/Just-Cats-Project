@@ -43,13 +43,15 @@ function Homepage(props) {
     )
 }
 
-function Explore(props) {
+function Explore() {
+
     const [profileImgs, setProfileImgs] = React.useState([])
+
     React.useEffect(() => {
         fetch('/api/explorepagephotos')
         .then((response) => response.json())
-        .then((result) => {
-            setProfileImgs(result);
+        .then((responseJson) => {
+            setProfileImgs(responseJson.profileImgs);
         });
 
     }, []);
@@ -59,6 +61,7 @@ function Explore(props) {
         <React.Fragment>
 
             <div>
+            { profileImgs.map(profileimg => <User name = {user.profile_url} /> ) }
 
             </div>
 
@@ -74,18 +77,18 @@ function Explore(props) {
     )
 }
 
-function AllUserInfo(){
-    const [users, setUsers] = React.useState([])
-fetch('/api/users')
-.then(response => response.json())
-.then(data => setUsers(data))
-[{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
-"bio":users.bio, "profile_img":users.profile_img, "email":users.email,
-"username":users.username}]
+// function AllUserInfo(){
+//     const [users, setUsers] = React.useState([])
+// fetch('/api/users')
+// .then(response => response.json())
+// .then(data => setUsers(data))
+// [{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
+// "bio":users.bio, "profile_img":users.profile_img, "email":users.email,
+// "username":users.username}]
 
-return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) }
+// return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
 
-}
+// }
 
 function RenderProfilePics() {
     return
