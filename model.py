@@ -20,7 +20,7 @@ class User(db.Model):
     profile_img = db.Column(db.String)
     email = db.Column(db.String, unique=True)
     password = db.Column(db.String)
-    username = db.Column(db.String(15), unique=True)
+    username = db.Column(db.String(10), unique=True)
 
     db.relationship("Like", back_populates="likes")
     db.relationship("Follower", back_populates="followers")
@@ -37,7 +37,7 @@ class User(db.Model):
 
     def as_dict(self):
         """Returns dictionary of user data"""
-        
+
         return {"user_id":self.user_id, "fname":self.fname, "petname":self.petname,
         "bio":self.bio, "profile_img":self.profile_img, "email":self.email,
         "username":self.username}

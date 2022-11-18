@@ -57,14 +57,17 @@ function Explore() {
     }, []);
 
     // <img src="${profilePics.profile_img}"></img>
-    console.log(profilePics)
+    //whatever my key is in python server becomes the . behind whatever I
+    //I am setting in REACT
+    //if i'm wondering if anything is carrying over don't forget to console.log(profilePics)
+    //adding string interpolation to get photos <img src={`${profilePic.profile_pic}.jpg`} />
 
 
     return (
         <React.Fragment>
 
             <div class="pictures">
-            { profilePics.map(profilePic => <img src={`${profilePic.profile_pic}.jpg`} /> ) }
+            { profilePics.map(profilePic => <img src={profilePic.profile_pic} /> ) }
             </div>
                 <ul>
                     <li>listing</li>
