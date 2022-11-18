@@ -45,26 +45,27 @@ function Homepage(props) {
 
 function Explore() {
 
-    const [profileImgs, setProfileImgs] = React.useState([])
+    const [profilePics, setProfilePics] = React.useState([])
 
     React.useEffect(() => {
         fetch('/api/explorepagephotos')
         .then((response) => response.json())
         .then((responseJson) => {
-            setProfileImgs(responseJson.profileImgs);
+            setProfilePics(responseJson);
         });
 
-    }, [{"profileImg":user.profile_img}]);
+    }, []);
 
-    
+    // <img src="${profilePics.profile_img}"></img>
+    console.log(profilePics)
+
+
     return (
         <React.Fragment>
 
-            <div>
-            { profileImgs.map(profileimg => <User name = {user.profile_img} /> ) }
-
+            <div class="pictures">
+            { profilePics.map(profilePic => <img src={`${profilePic.profile_pic}.jpg`} /> ) }
             </div>
-
                 <ul>
                     <li>listing</li>
                     <li>all public database</li>
