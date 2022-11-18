@@ -81,18 +81,18 @@ function Explore() {
     )
 }
 
-// function AllUserInfo(){
-//     const [users, setUsers] = React.useState([])
-// fetch('/api/users')
-// .then(response => response.json())
-// .then(data => setUsers(data))
-// [{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
-// "bio":users.bio, "profile_img":users.profile_img, "email":users.email,
-// "username":users.username}]
+function AllUserInfo(){
+    const [users, setUsers] = React.useState([])
+fetch('/api/users')
+.then(response => response.json())
+.then(data => setUsers(data))
+[{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
+"bio":users.bio, "profile_img":users.profile_img, "email":users.email,
+"username":users.username}]
 
-// return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
+return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
 
-// }
+}
 
 function RenderProfilePics() {
     return
@@ -141,7 +141,7 @@ function Login(props) {
 function MyProfile(props) {
     return (
         <React.Fragment>
-            <Hello username="test user"/>
+            <Hello username="username"/>
     <p>I have to make sure you're in the session, else return you to login</p>
     <p>want to log out? I'll put reusable logout component here</p>
     <h1>Here's your profile</h1>
