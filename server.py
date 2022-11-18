@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, render_template
-from model import db, User, Photo, Like, LikeNotification, Comment, Follower, CommentNotification, connect_to_db
+from flask import (Flask, jsonify, render_template, request, flash, session, redirect)
+from model import connect_to_db, db, User, Photo, Like, LikeNotification, Comment, Follower, CommentNotification, connect_to_db
 import crud
 
 app = Flask(__name__)
+app.secret_key = "dev"
 
 
 @app.route('/')
@@ -19,7 +20,7 @@ def get_all_profile_photos_json():
     users = db.session.query(User).all()
     user_profile_pics_list = []
     for user in users:
-        user_profile_pics_list.append({"profile_pic":user.profile_url})
+        user_profile_pics_list.append({"profile_pic":user.profile_img})
     return jsonify(user_profile_pics_list)
 
 @app.route('/api/alluserinfo')
@@ -41,4 +42,5 @@ def get_all_user_info_json():
 # return render_template(')
 
 if __name__ == "__main__":
+    connect_to_db(app)
     app.run(debug=True, host="0.0.0.0")

@@ -54,14 +54,14 @@ function Explore() {
             setProfileImgs(responseJson.profileImgs);
         });
 
-    }, []);
+    }, [{"profileImg":user.profile_img}]);
 
     
     return (
         <React.Fragment>
 
             <div>
-            { profileImgs.map(profileimg => <User name = {user.profile_url} /> ) }
+            { profileImgs.map(profileimg => <User name = {user.profile_img} /> ) }
 
             </div>
 
