@@ -30,6 +30,14 @@ def validate_user_login():
     email = data.get('email')
     password = data.get('password')
 
+    user = crud.get_user_by_email(email)
+    if not user or user.password != password:
+        flash("Whoops! The email or password you entered is incorrect.")
+    else:
+        user['account'] = True
+        return jsonify(user)
+
+
 
 
 # @app.route('/api/alluserinfo')

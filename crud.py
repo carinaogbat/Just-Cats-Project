@@ -22,6 +22,13 @@ def get_user_by_username(username):
 
     return User.query.get(username)
 
+def get_user_by_email(email):
+    """Returns user by email"""
+
+    return User.query.get(email)
+
+
+
 def get_all_users():
     """Return all users"""
 
