@@ -23,15 +23,24 @@ def get_all_profile_photos_json():
         user_profile_pics_list.append({"profile_pic":user.profile_img})
     return jsonify(user_profile_pics_list)
 
-@app.route('/api/alluserinfo')
-def get_all_user_info_json():
+@app.route('/api/login', methods=["POST"])
+def validate_user_login():
+    data = request.get_json
 
-    users = db.session.query(User).all()
-    users_dict = users.as_dict()
+    email = data.get('email')
+    password = data.get('password')
 
 
 
-    return jsonify(users_dict)
+# @app.route('/api/alluserinfo')
+# def get_all_user_info_json():
+
+#     users = db.session.query(User).all()
+#     users_dict = users.as_dict()
+
+
+
+#     return jsonify(users_dict)
 
 
 

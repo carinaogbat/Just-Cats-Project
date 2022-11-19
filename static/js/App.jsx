@@ -43,6 +43,14 @@ function Homepage(props) {
     )
 }
 
+    // <img src="${profilePics.profile_img}"></img>
+    //whatever my key is in python server becomes the . behind whatever I
+    //I am setting in REACT
+    //if i'm wondering if anything is carrying over don't forget to console.log(profilePics)
+    //adding string interpolation to get photos <img src={`${profilePic.profile_pic}.jpg`} />
+
+
+
 function Explore() {
 
     const [profilePics, setProfilePics] = React.useState([])
@@ -56,43 +64,32 @@ function Explore() {
 
     }, []);
 
-    // <img src="${profilePics.profile_img}"></img>
-    //whatever my key is in python server becomes the . behind whatever I
-    //I am setting in REACT
-    //if i'm wondering if anything is carrying over don't forget to console.log(profilePics)
-    //adding string interpolation to get photos <img src={`${profilePic.profile_pic}.jpg`} />
-
-
     return (
         <React.Fragment>
 
-            <div class="pictures">
+            <div id="full_size_pictures">
             { profilePics.map(profilePic => <img src={profilePic.profile_pic} /> ) }
             </div>
                 <ul>
-                    <li>listing</li>
-                    <li>all public database</li>
-                    <li>user photos here as large images</li>
                     <li>You don't need to be logged in for this, these are public photos</li>
                 </ul>
-
-
         </React.Fragment>
     )
 }
 
-function AllUserInfo(){
-    const [users, setUsers] = React.useState([])
-fetch('/api/users')
-.then(response => response.json())
-.then(data => setUsers(data))
-[{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
-"bio":users.bio, "profile_img":users.profile_img, "email":users.email,
-"username":users.username}]
+// function AllUserInfo(){
+//     const [users, setUsers] = React.useState([])
+// fetch('/api/users')
+// .then(response => response.json())
+// .then(data => setUsers(data))
+// [{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
+// "bio":users.bio, "profile_img":users.profile_img, "email":users.email,
+// "username":users.username}]
 
-return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
+// return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
 
-}
+// }
+
 
 function RenderProfilePics() {
     return
