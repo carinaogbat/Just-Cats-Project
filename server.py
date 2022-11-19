@@ -29,13 +29,14 @@ def validate_user_login():
 
     email = data.get('email')
     password = data.get('password')
-
+    user_login_info = []
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("Whoops! The email or password you entered is incorrect.")
     else:
-        user['account'] = True
-        return jsonify(user)
+        for info in user:
+            user_login_info.append({"email":user.email, "account": True})
+        return jsonify(user_login_info)
 
 
 
