@@ -1,0 +1,31 @@
+11/1 - thought I needed yo install Python with requirements and ended up with
+    way too much. Will have to check on how to fix in Thursdays lab, think I can just
+    delete and reinstall waht's needed in new virtual env. Built out model.py classes
+    but they are still untested.
+11/3 - realized how difficult it will be for me to send information back
+    and forth between front and back end using the api and I think most important feature 
+    is photo upload so I will focus first on creating a sign in, uploading a photo,
+    viewing your photos, deleting your photos. Secondly viewing all user photos
+    and then following other users. User ID is not autocreating.
+11/5 - struggling a lot with data modeling and relationships of one to many and many to many,
+    still have to create relationships in model.py but seed_database does run
+11/6 - have react routing working but still trying to understand using state in
+    my web app, somehow broke my seed_database, not sure how. Realized I broke my seed_database by 
+    trying to move my project folder to organize better, also can't remember how I got list of
+    profile images earlier today.
+11/15 - trying to create a fetch on front end getting syntax and 500 error
+11/17 - realized today before class that i couldn't communicate with front end
+    becuase I had not connected my server to the database, I did that but still was
+    not pulling out on my front end correctly, i was trying to use the instance
+    attribute as the display instead of the key of the list I was passing from
+    the front, I also couldn't display my photos because i didn't have the .jpg
+    on the end on them in my json file. I'm realzing I probably can't implment all
+    the features I want and need to stick to the basics of viewing your profile,
+    viewing another profile, uploading a picture and hopefully following a profile.
+    I may not be able to get to likes and comments at all.
+11/19 - have been working on getting a login going. I initially was not able ot validate 
+    the user because I was making the wrong query to the db, I fixed that but now am having
+    trouble with figuring out how to save a user is session in different "pages" of the app
+    and how to redirect them if they enter incorrect information. I fixed my .jpg in
+    the backend, I just needed to turn off my computer for it to updatr.
+    
