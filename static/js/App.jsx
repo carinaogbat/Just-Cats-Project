@@ -113,16 +113,33 @@ function SignUp(props) {
 }
 
 
-//login page should have sign up option
-function Login(props) {
+function Login() {
+
+    const [user, setUser] = React.useState({email:"", password:""});
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch('/api/login', { method: "POST",
+        body: JSON.stringify(user),
+        headers: { 'Content-Type': 'application/json',
+}})};
+
+
     return (
-        
         <React.Fragment>
+            <div>
+                Login Form 
+                <h2>Sign In Below:</h2>
+                <form id="loginform" onSubmit={handleSubmit}>
+                    <label htmlFor="email">Email</label>
+                    <input type="text" id="email" onChange={(e) => setUser({...user, email: e.target.value})}></input>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" onChange={(e) => setUser({...user, password: e.target.value})}></input>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
             
-        <h1> Lets log you in:</h1>
-        <LogInButton />
-        <p>I need to put your login form here</p>
-        <p>I need to verify your login info</p>
+
         <p>then I need to make sure I put you in session</p>
         <p>Once you're in session I will have to redirect you to your profile</p>
         <Link to="/myprofile">This link will really be a redirect to your profile</Link>
@@ -220,25 +237,13 @@ function Hello(props) {
     )
 }
 
-function LogInButton() {
-    return (
-        <button type="button" onSubmit={LogInForm}>
-        Log In
-        </button>
-    )
-}
-
-function LogInForm() {
-    return (
-        <div className="form">
-        <form>
-            <input type="text" name="username" required></input>
-            <input type="password" name="password" required></input>
-            <input type="submit"></input>
-        </form>
-        </div>
-    )
-}
+// function LogInButton() {
+//     return (
+//         <button type="button" onSubmit={LogInForm}>
+//         Log In
+//         </button>
+//     )
+// }
 
 
 

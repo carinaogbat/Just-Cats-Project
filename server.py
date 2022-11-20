@@ -25,18 +25,17 @@ def get_all_profile_photos_json():
 
 @app.route('/api/login', methods=["POST"])
 def validate_user_login():
-    data = request.get_json
 
-    email = data.get('email')
-    password = data.get('password')
-    user_login_info = []
+
+    email = request.json.get('email')
+    password = request.json.get('password')
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("Whoops! The email or password you entered is incorrect.")
+        return redirect('/')
     else:
-        for info in user:
-            user_login_info.append({"email":user.email, "account": True})
-        return jsonify(user_login_info)
+
+        return jsonify(user=user.as_dict())
 
 
 
