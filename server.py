@@ -40,6 +40,36 @@ def validate_user_login():
         valid_user = True
         return jsonify({"status":200, "message": "succesfully retrived user", "user" : user.as_dict()})
 
+    @app.route('/api/signup', methods=["POST"])
+    def sign_up_user():
+        """Create a new account for a user"""
+
+        fname = request.json.get("First Name")
+        profile_img = "/static/styles/imgs/DefaultFloof.jpeg"
+        pet_name = request.json.get("Pet Name")
+        pet_bio = request.json.get("Pet Bio")
+        email = request.json.get("Email")
+        username = request.json.get("Username")
+        password = request.json.get("Password")
+
+        #should check db to see if username is already taken
+
+        new_user = crud.create_user(fname=fname, profile_img=profile_img, 
+            petname=pet_name, pet_bio=pet_bio, email=email, username=username, 
+            password=password)
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        if new_user:
+            flash('Congratulations you\'ve created your account!')
+            return jsonify({"status":200, "message": "succesfully created user",
+            'fname':fname, 'profileImg':profile_img, 'petName':pet_name, 'PetBio':pet_bio, 
+            'email':email, 'userName':username, 'password':password})
+        else:
+            print("***Create user failed***")
+            return jsonify({"status":400, "message": "create user failed"})
+
 
 
 

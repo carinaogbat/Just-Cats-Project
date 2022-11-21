@@ -15,11 +15,11 @@ with open("data/users_and_cats.json") as f:
 
 users_in_db = []
 for user in user_data:
-    fname, profile_img, petname, email, username, password = (
-        user["pawrent"], user["profile_img"], user["pet"], 
+    fname, profile_img, petname, pet_bio, email, username, password = (
+        user["pawrent"], user["profile_img"], user["pet"], user['bio'],
         user["email"], user["username"], user["password"]
     )
-    db_user = crud.create_user(fname, profile_img, petname, 
+    db_user = crud.create_user(fname, profile_img, petname, pet_bio,
         email, username, password)
     users_in_db.append(db_user)
 
