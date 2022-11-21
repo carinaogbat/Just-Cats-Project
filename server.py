@@ -32,10 +32,16 @@ def validate_user_login():
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("Whoops! The email or password you entered is incorrect.")
-        return redirect('/')
+        print("***Wrong email or password ***")
+        return jsonify({"status":400, "message": "wrong email or password"})
+        #can i get this to pull back to front and show invalid user?
+        
     else:
+        valid_user = True
+        return jsonify({"status":200, "message": "succesfully retrived user", "user" : user.as_dict()})
 
-        return jsonify(user=user.as_dict())
+
+
 
 
 
