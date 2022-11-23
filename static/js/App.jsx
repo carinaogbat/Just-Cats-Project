@@ -97,11 +97,44 @@ function RenderProfilePics() {
 
 
 function SignUp(props) {
+
+    const [user, setUser] = React.useState({fName: "", profileImg:"", petName:"",
+    petBio:"", email:"", userName:"", password:""})
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetch('/api/signup', { method: "POST",
+        body: JSON.stringify(user),
+        headers: { 'Content-Type': 'application/json',
+}})};
+
+
+
+// return jsonify({"status":200, "message": "succesfully created user",
+// 'fname':fname, 'profile_img':profile_img, 'pet_name':pet_name, 'pet_bio':pet_bio, 
+// 'email':email, 'username':username, 'password':password})
     return (
             <React.Fragment>
             <h2>Lets sign you up!</h2>
-            <p>I will need to put your sign up form here</p>
-            <p>I will need to add you to the database</p>
+            <div>
+                <h1>Sign Up Here</h1>
+                <form id="sign up" onSubmit={handleSubmit}></form>
+                <label htmlFor="first-name">First Name</label>
+                <input type="text" id="fname" onChange={(e) => setUser({...user, fName: e.target.value})}></input>
+                <label htmlFor="profile-image">Profile Image</label>
+                <input type="text" id="profile-image" onChange={(e) => setUser({...user, profileImg: e.target.value})}></input>
+                <label htmlFor="pet-name">Pet Name</label>
+                <input type="text" id="pet-name" onChange={(e) => setUser({...user, petName: e.target.value})}></input>
+                <label htmlFor="pet-bio">Pet Bio</label>
+                <input type="text" id="pet-bio" onChange={(e) => setUser({...user, petBio: e.target.value})}></input>
+                <label htmlFor="email">Email</label>
+                <input type="text" id="email" onChange={(e) => setUser({...user, email: e.target.value})}></input>
+                <label htmlFor="username">Username</label>
+                <input type="text" id="username" onChange={(e) => setUser({...user, userName: e.target.value})}></input>
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" onChange={(e) => setUser({...user, password: e.target.value})}></input>
+                <button type="submit">Sign In</button>
+            </div>
             <p>I will need to log you into session</p>
             <p>Wrong page?</p>
             <Link to="/login">Log In Here</Link>
