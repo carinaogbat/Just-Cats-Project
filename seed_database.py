@@ -30,8 +30,12 @@ model.db.session.commit()
 
 ogbot_photos_in_db = ["/static/imgs/TiniestFloof.jpeg", "static/images/MouseFloof.jpeg", 
     "static/imgs/YoungFloof.jpeg", "static/imgs/NappingFloof", "static/imgs/ComputerFloof"]
+jamie_photos_in_db = ["static/imgs/Pepperoni.jpg", "static/imgs/Chloe.jpg", "static/imgs/BlackJack.jpg"]
+lois_photos_in_db = ["static/imgs/Dixie.jpg", "static/imgs/Athena.jpg"]
+chelsea_photos_in_db = ["static/imgs/Mac2ndPhoto.jpg", "static/imgs/Charlie.jpg", "static/imgs/MacAndCharlie.jpg"]
 
-ogbot = crud.grab_first_user()
+ogbot = crud.grab_first_user() 
+#remember to grab this user by name
 print("*******", ogbot, "*********")
 db_photos = []
 for photo_url in ogbot_photos_in_db:
