@@ -18,6 +18,13 @@ def create_photo(user_id, url):
 
     return photo
 
+def grab_first_user():
+    """Get first user object in DB"""
+
+    user = User.query.first()
+
+    return user
+
 
 # return a user by id
 def get_user_by_id(user_id):

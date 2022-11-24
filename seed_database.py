@@ -23,15 +23,22 @@ for user in user_data:
         email, username, password)
     users_in_db.append(db_user)
 
+
+model.db.session.add_all(users_in_db)
+model.db.session.commit()
+
+
 ogbot_photos_in_db = ["/static/imgs/TiniestFloof.jpeg", "static/images/MouseFloof.jpeg", 
     "static/imgs/YoungFloof.jpeg", "static/imgs/NappingFloof", "static/imgs/ComputerFloof"]
 
-ogbot = model.User.query.first()
+ogbot = crud.grab_first_user()
+print("*******", ogbot, "*********")
+db_photos = []
 for photo_url in ogbot_photos_in_db:
-    db_photos = crud.create_photo(user_id=ogbot, url=photo_url)
+    db_photo = crud.create_photo(user_id=ogbot.user_id, url=photo_url)
+    db_photos.append(db_photo)
 
 
 
-
-model.db.session.add_all(users_in_db, db_photos)
+model.db.session.add_all(db_photos)
 model.db.session.commit()
