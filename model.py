@@ -31,7 +31,7 @@ class User(db.Model):
     
     
     def __repr__(self):
-        return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email}>'
+        return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email} UserName={self.username}>'
 
 
 

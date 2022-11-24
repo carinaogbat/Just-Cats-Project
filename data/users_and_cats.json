@@ -1,5 +1,16 @@
-[
+[   {
+        "pawrent": "Carina", 
+        "profile_img": "static/imgs/DefaultFloof.jpeg",
+        "pet": "Orion",
+        "bio": "A floofy and poofy angel who came to us when she weighed just three ounces!",
+        "email": "OgBot@mail.com",
+        "username": "OgBot",
+        "password": "test"
+
+    },
+    
     {
+    
         "pawrent": "Cathy", 
         "profile_img": "static/imgs/Jeffrey.jpg",
         "pet": "Jeffrey",
