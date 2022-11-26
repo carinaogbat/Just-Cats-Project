@@ -68,7 +68,7 @@ function Explore() {
         <React.Fragment>
 
             <div id="full_size_pictures">
-            { profilePics.map(profilePic => <img src={profilePic.profile_pic} /> ) }
+            { profilePics.map(profilePic => <img src={profilePic.profile_pic} height="512" width="360" /> ) }
             </div>
                 <ul>
                     <li>You don't need to be logged in for this, these are public photos</li>
