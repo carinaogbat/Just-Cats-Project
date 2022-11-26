@@ -192,29 +192,21 @@ function MyProfile(props) {
         .then((responseJson) => {
             setUsers(responseJson);
         });
-        
 
     }, []);
-    console.log(users)
+
     return (
         <React.Fragment>
-            <Hello username="username"/>
-            <div id="profile-info">
-            { users.map(user => <User name = {user.fname} petname = {user.petname} bio = {user.bio}
-            profileImage = {user.profile_img} email = {user.email} /> ) }
+            <Hello username={users.fname}/>
+            <div id="profile-photo">
+                <h3>{users.username}</h3>
+                <img src={users.profile_img} height="256" width="180"></img>
+            <p>Bio: {users.bio}</p>
             </div>
 
-    <p>I have to make sure you're in the session, else return you to login</p>
-    <p>want to log out? I'll put reusable logout component here</p>
-    <h1>Here's your profile</h1>
-    <p>I have your username and profile picture displayed at the top</p>
-    <p> heres who's following you and who you're following</p>
+
     <Link to="following">Here's where you can see pictures of users you're following</Link>
-    <ul>
-        <li>lets list your cute</li>
-        <li> cat pictures here</li>
-        <li>these are all as thumbnails</li>
-    </ul>
+
     <p>you will also be able to click on your thumbnail pictures</p>
     <Link to="/viewowneduserimage">In case you want to delete it</Link>
     </React.Fragment>
