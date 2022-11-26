@@ -32,11 +32,11 @@ def get_user_by_id(user_id):
 
     return User.query.get(user_id)
 
-# #return a user by username
-# def get_user_by_username(username):
-#     """Returns a user by Username"""
+#return a user by username
+def get_user_by_username(username):
+    """Returns a user by Username"""
 
-#     return User.query.filter(User.username == username).first()
+    return User.query.filter(User.username == username).first()
 
 def get_user_by_email(email):
     """Returns user by email"""
