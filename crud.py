@@ -18,15 +18,6 @@ def create_photo(user_id, url):
 
     return photo
 
-def grab_first_user():
-    """Get first user object in DB"""
-
-    user = User.query.first()
-
-    return user
-
-
-# return a user by id
 def get_user_by_id(user_id):
     """Returns a user by ID"""
 
@@ -44,12 +35,15 @@ def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 
 
-
 def get_all_users():
     """Return all users"""
 
     return User.query.all()
 
+def get_users_photos(user_id):
+    """Returns user photos"""
+
+    return Photo.query.filter(Photo.user_id == user_id)
 
         
 

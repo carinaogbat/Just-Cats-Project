@@ -34,7 +34,6 @@ class User(db.Model):
         return f'<User ID={self.user_id}, Name= {self.fname}, Pet Name= {self.petname}, Email={self.email} UserName={self.username}>'
 
 
-
     def as_dict(self):
         """Returns dictionary of user data"""
 

@@ -195,13 +195,15 @@ function MyProfile(props) {
 
     }, []);
 
+    console.log(users)
     return (
         <React.Fragment>
             <Hello username={users.fname}/>
-            <div id="profile-photo">
+            <div id="profile-info">
                 <h3>{users.username}</h3>
                 <img src={users.profile_img} height="256" width="180"></img>
-            <p>Bio: {users.bio}</p>
+                <h4>Meet {users.petname}!</h4>
+            <p>{users.bio}</p>
             </div>
 
 
