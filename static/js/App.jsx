@@ -64,15 +64,18 @@ function Explore() {
 
     }, []);
 
+    console.log("***********")
+    // this doesn't print
+    // console.log(setProfilePics)
+    console.log(profilePics)
+    console.log("***********")
+
     return (
         <React.Fragment>
 
             <div id="full_size_pictures">
             { profilePics.map(profilePic => <img src={profilePic.profile_pic} height="512" width="360" /> ) }
             </div>
-                <ul>
-                    <li>You don't need to be logged in for this, these are public photos</li>
-                </ul>
         </React.Fragment>
     )
 }
@@ -186,9 +189,30 @@ function Login() {
 }
 
 function MyProfile(props) {
+
+    const [users, setUsers] = React.useState({})
+
+    React.useEffect(() => {
+        fetch('/api/myprofile')
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setUsers(responseJson);
+        });
+
+    }, []);
+    console.log("**********")
+    console.log(setUsers)
+    console.log(users)
+    console.log("***********")
     return (
         <React.Fragment>
             <Hello username="username"/>
+            <div id="profile-info">
+            { setUser.map(user => <img src={user.profile_pic} height="512" width="360" /> ) }
+            </div>
+            <div id="profile-pictures">
+            { setUser.map(user => <img src={user.profile_pic} height="512" width="360" /> ) }
+            </div>
     <p>I have to make sure you're in the session, else return you to login</p>
     <p>want to log out? I'll put reusable logout component here</p>
     <h1>Here's your profile</h1>

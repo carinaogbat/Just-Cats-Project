@@ -23,9 +23,18 @@ def get_all_profile_photos_json():
         user_profile_pics_list.append({"profile_pic":user.profile_img})
     return jsonify(user_profile_pics_list)
 
+@app.route("/api/myprofile")
+def display_user_profile():
+    """Gets and displays user info and photos"""
+
+    username = "OgBot"
+    user = crud.get_user_by_username(username)
+
+    return jsonify(user.as_dict())
+
+
 @app.route('/api/login', methods=["POST"])
 def validate_user_login():
-
 
     email = request.json.get('email')
     password = request.json.get('password')
