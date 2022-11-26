@@ -39,7 +39,7 @@ class User(db.Model):
         """Returns dictionary of user data"""
 
         return {"user_id":self.user_id, "fname":self.fname, "petname":self.petname,
-        "bio":self.bio, "profile_img":self.profile_img, "email":self.email,
+        "bio":self.bio, "profile_img":self.profile_img, "photos":self.photos, "email":self.email,
         "username":self.username}
 
 

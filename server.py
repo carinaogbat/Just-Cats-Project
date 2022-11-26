@@ -30,7 +30,9 @@ def display_user_profile():
     username = "OgBot"
     user = crud.get_user_by_username(username)
 
-    return jsonify(user.as_dict())
+    return jsonify({"user_id":user.user_id, "fname":user.fname, "petname":user.petname,
+        "bio":user.bio, "profile_img":user.profile_img, "email":user.email,
+        "username":user.username})
 
 
 @app.route('/api/login', methods=["POST"])
