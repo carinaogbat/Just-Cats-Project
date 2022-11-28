@@ -196,6 +196,21 @@ function MyProfile(props) {
     }, []);
 
     console.log(users)
+
+    const [photos, setPhotos] = React.useState([])
+
+    React.useEffect(() => {
+        fetch('/api/myprofilepictures')
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setPhotos(responseJson);
+        });
+
+    }, []);
+
+    console.log(photos)
+
+
     return (
         <React.Fragment>
             <Hello username={users.fname}/>
@@ -204,6 +219,10 @@ function MyProfile(props) {
                 <img src={users.profile_img} height="256" width="180"></img>
                 <h4>Meet {users.petname}!</h4>
             <p>{users.bio}</p>
+            </div>
+
+            <div id="profile-pictures">
+            { photos.map(photo => <img src={photo.photo_url} height="512" width="360" /> ) }
             </div>
 
 
@@ -281,14 +300,6 @@ function Hello(props) {
     <p>Welcome {props.username}!</p>
     )
 }
-
-// function LogInButton() {
-//     return (
-//         <button type="button" onSubmit={LogInForm}>
-//         Log In
-//         </button>
-//     )
-// }
 
 
 
