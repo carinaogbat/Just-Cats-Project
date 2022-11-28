@@ -28,7 +28,7 @@ model.db.session.add_all(users_in_db)
 model.db.session.commit()
 
 
-ogbot_photos_in_db = ["/static/imgs/TiniestFloof.jpeg", "static/images/MouseFloof.jpeg", 
+ogbot_photos_in_db = ["/static/imgs/TiniestFloof.jpeg", "static/imgs/MouseFloof.jpeg", 
     "static/imgs/YoungFloof.jpeg", "static/imgs/NappingFloof", "static/imgs/ComputerFloof"]
 jamie_photos_in_db = ["static/imgs/Pepperoni.jpg", "static/imgs/Chloe.jpg", "static/imgs/BlackJack.jpg"]
 lois_photos_in_db = ["static/imgs/Dixie.jpg", "static/imgs/Athena.jpg"]
@@ -56,6 +56,15 @@ for photo_url in chelsea_photos_in_db:
     db_photos.append(db_photo)
 
 
-
 model.db.session.add_all(db_photos)
+
+users = crud.get_all_users
+ogbot = crud.get_user_by_username("OgBot")
+following = []
+
+for ogbot:
+    for user in users:
+        db_follow = crud.create_follow()
+
+
 model.db.session.commit()

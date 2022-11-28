@@ -41,7 +41,7 @@ def display_user_photos():
     user_photos = crud.get_users_photos(user.user_id)
     user_photos_list = []
     for photos in user_photos:
-        user_photos_list.append({"photo_url":user_photos.url})
+        user_photos_list.append({"photo_url":photos.url})
 
     return jsonify(user_photos_list)
 

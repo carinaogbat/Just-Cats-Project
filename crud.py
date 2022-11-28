@@ -6,7 +6,7 @@ def create_user(fname, profile_img, petname, bio,
     """Creates a User"""
 
     user = User(fname=fname, profile_img=profile_img,
-    petname=petname, bio = bio, email=email, username=username,
+    petname=petname, bio=bio, email=email, username=username,
     password=password)
 
     return user
@@ -17,6 +17,13 @@ def create_photo(user_id, url):
     photo = Photo(user_id=user_id, url=url)
 
     return photo
+
+def create_follow(user_id):
+    """Follows a user by id"""
+
+    follow = Follower(follows_user_id=user_id)
+
+    return follow
 
 def get_user_by_id(user_id):
     """Returns a user by ID"""
