@@ -45,6 +45,15 @@ def display_user_photos():
 
     return jsonify(user_photos_list)
 
+@app.route("/api/followingfeed")
+def display_user_photos_followed():
+    """Gets feed of all pictures of users followed"""
+
+    photos = db.session.query(Photo).all()
+    users_posted_photos = []
+    for photo in photos:
+        users_posted_photos.append({"user_pic":photo.url})
+    return jsonify(users_posted_photos)
 
 
 @app.route('/api/login', methods=["POST"])

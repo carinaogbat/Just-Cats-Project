@@ -220,13 +220,14 @@ function MyProfile(props) {
                 <h4>Meet {users.petname}!</h4>
             <p>{users.bio}</p>
             </div>
+            <Link to="following">Here's where you can see pictures of users you're following</Link>
 
             <div id="profile-pictures">
             { photos.map(photo => <img src={photo.photo_url} height="512" width="360" /> ) }
             </div>
 
 
-    <Link to="following">Here's where you can see pictures of users you're following</Link>
+    
 
     <p>you will also be able to click on your thumbnail pictures</p>
     <Link to="/viewowneduserimage">In case you want to delete it</Link>
@@ -278,16 +279,26 @@ function ViewUnownedUserImage(props){
 
 }
 
-function Following(props) {
+function Following() {
+    const [photos, setPhotos] = React.useState([])
+
+    React.useEffect(() => {
+        fetch('/api/followingfeed')
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setPhotos(responseJson);
+        });
+
+    }, []);
+
+    console.log(photos)
     return (
         <React.Fragment>
             <p>I have to make sure you're in the session, else return you to login</p>
             <p>want to log out? I'll put reusable logout component here</p>
-            <ul>
-                <li> here's a list </li>
-                <li> of users profiles and photos</li>
-                <li> who I am following!</li>
-            </ul>
+            <div id="following-pictures">
+            { photos.map(photo => <img src={photo.user_pic} height="512" width="360" /> ) }
+            </div>
             <>these photos will be displayed large and not as thumbnails</>
             <p>now you'll be able to like the photo</p>
             <Link to="ViewOtherProfile">And go to the username linked to the photo</Link>
