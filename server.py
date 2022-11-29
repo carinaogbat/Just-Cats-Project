@@ -20,7 +20,7 @@ def get_all_profile_photos_json():
     users = db.session.query(User).all()
     user_profile_pics_list = []
     for user in users:
-        user_profile_pics_list.append({"profile_pic":user.profile_img})
+        user_profile_pics_list.append({"profile_pic":user.profile_img, "username":user.username})
     return jsonify(user_profile_pics_list)
 
 @app.route("/api/myprofile")

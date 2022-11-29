@@ -27,5 +27,11 @@
     the user because I was making the wrong query to the db, I fixed that but now am having
     trouble with figuring out how to save a user is session in different "pages" of the app
     and how to redirect them if they enter incorrect information. I fixed my .jpg in
-    the backend, I just needed to turn off my computer for it to updatr.
+    the backend, I just needed to turn off my computer for it to update.
+11/22 - met with Seema and Anika, they say I should focus on just displaying a user profile 
+    over the sign out features. So view your profile, view another profile, and photo uploading
+    can wait until next sprint.
+11/28 - I have a users profile displaying but don't have a seeded relationship between followers
+    I did not have advising today so I just hardcoded in some photos. I need to complete the
+    following relationship tomorrow and be able to view another profile.
     

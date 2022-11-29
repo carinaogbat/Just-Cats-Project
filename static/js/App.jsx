@@ -69,28 +69,13 @@ function Explore() {
 
             <div id="full_size_pictures">
             { profilePics.map(profilePic => <img src={profilePic.profile_pic} height="512" width="360" /> ) }
+            { profilePics.map(profilePic => <p><Link to="/viewotherprofile">{profilePic.username}</Link></p> ) }
             </div>
         </React.Fragment>
     )
 }
 
-// function AllUserInfo(){
-//     const [users, setUsers] = React.useState([])
-// fetch('/api/users')
-// .then(response => response.json())
-// .then(data => setUsers(data))
-// [{"user_id":users.user_id, "fname":users.fname, "petname":users.petname,
-// "bio":users.bio, "profile_img":users.profile_img, "email":users.email,
-// "username":users.username}]
-
 // return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
-
-// }
-
-
-function RenderProfilePics() {
-    return
-}
 
 
 function SignUp(props) {
@@ -195,7 +180,6 @@ function MyProfile(props) {
 
     }, []);
 
-    console.log(users)
 
     const [photos, setPhotos] = React.useState([])
 
@@ -207,8 +191,6 @@ function MyProfile(props) {
         });
 
     }, []);
-
-    console.log(photos)
 
 
     return (
