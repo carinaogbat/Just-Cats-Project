@@ -1,18 +1,5 @@
 const Link = ReactRouterDOM.Link;
 
-
-
-// Components Wanted:
-// -Login
-// -logout
-// -display username
-// -search user
-// -upload photo
-// -display photo
-// -like photo
-// -get users by likes
-// -get likes by users
-
 function NavBar (props) {
     return (
         <nav>
@@ -29,6 +16,10 @@ function NavBar (props) {
         </nav>
     )
 }
+
+function App() {
+
+const [loggedIn, setLoggedIn] = React.useState(false)
 
 
 function Homepage(props) {
@@ -49,8 +40,6 @@ function Homepage(props) {
     //if i'm wondering if anything is carrying over don't forget to console.log(profilePics)
     //adding string interpolation to get photos <img src={`${profilePic.profile_pic}.jpg`} />
 
-
-
 function Explore() {
 
     const [profilePics, setProfilePics] = React.useState([])
@@ -62,7 +51,7 @@ function Explore() {
             setProfilePics(responseJson);
         });
 
-    }, []);
+    });
 
     return (
         <React.Fragment>
@@ -74,7 +63,6 @@ function Explore() {
         </React.Fragment>
     )
 }
-
 // return { users.map(user => <User name = {user.firstName} email = {user.email} /> ) };
 
 
@@ -137,7 +125,20 @@ function Login() {
         fetch('/api/login', { method: "POST",
         body: JSON.stringify(user),
         headers: { 'Content-Type': 'application/json',
-}})};
+}})
+    .then((result) => {if (result.has_account === 'true') {
+        setUser({user_id: result.user_id,
+                fName: result.fname,
+                petName: result.petname,
+                bio: result.bio,
+                profileImg: result.profile_img,
+                photos: result.photos,
+                email: result.email,
+                username: result.username});
+        setLoggedIn(true);
+        };
+    });
+};
 
 
     return (
@@ -154,9 +155,6 @@ function Login() {
                 </form>
             </div>
             
-
-        <p>then I need to make sure I put you in session</p>
-        <p>Once you're in session I will have to redirect you to your profile</p>
         <Link to="/myprofile">This link will really be a redirect to your profile</Link>
 
         <h2>Are you not a user?</h2>
@@ -236,30 +234,7 @@ function ViewOtherProfile(props) {
     )
 }
 
-function ViewOwnedUserImage(props) {
-    return (
-        <React.Fragment>
-            <p>I have to make sure you're in the session, else return you to login</p>
-            <p>want to log out? I'll put reusable logout component here</p>
-            <p>Awwww look at my cute picture</p>
-            <p>this picture is large because I clicked it from my profile thumbnail</p>
-            <p>Do i want to delete my picture?</p>
-        </React.Fragment>
-    )
 
-}
-
-function ViewUnownedUserImage(props){
-    return (
-        <React.Fragment>
-            <p>I have to make sure you're in the session, else return you to login</p>
-            <p>want to log out? I'll put reusable logout component here</p>
-            <p>this is not my picture I can like it but not delete it</p>
-            <p>I clicked it from the thumblist now it is large</p>
-        </React.Fragment>
-    )
-
-}
 
 function Following() {
     const [photos, setPhotos] = React.useState([])
@@ -294,9 +269,6 @@ function Hello(props) {
     )
 }
 
-
-
-function App() {
     return (
 
         <ReactRouterDOM.BrowserRouter>

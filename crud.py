@@ -18,10 +18,10 @@ def create_photo(user_id, url):
 
     return photo
 
-def create_follow(user_id):
+def create_follow(user_id_follower, user_id_followed):
     """Follows a user by id"""
 
-    follow = Follower(follows_user_id=user_id)
+    follow = Follower(follower_id=user_id_follower, follows_user_id=user_id_followed)
 
     return follow
 

@@ -58,12 +58,12 @@ for photo_url in chelsea_photos_in_db:
 
 model.db.session.add_all(db_photos)
 
-# users = crud.get_all_users
-# ogbot = crud.get_user_by_username("OgBot")
-# following = []
+users = crud.get_all_users
+ogbot = crud.get_user_by_username("OgBot")
+following = []
 
-#     for user in users:
-#         db_follow = crud.create_follow()
+# for users in range(2,12):
+#     db_follow = crud.create_follow(ogbot.user_id, users.user_id)
 
-
+model.db.session.add_all(following)
 model.db.session.commit()

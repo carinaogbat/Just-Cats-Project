@@ -11,7 +11,6 @@ class User(db.Model):
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     likes = db.Column(db.Integer, db.ForeignKey("likes.like_id"))
-    follower_id = db.Column(db.Integer, db.ForeignKey("followers.follower_id"))
     like_notification = db.Column(db.Integer, db.ForeignKey("like_notifications.like_notification_id"))
     comment_id = db.Column(db.Integer, db.ForeignKey("comments.comment_id"))
     fname = db.Column(db.String)
@@ -37,9 +36,9 @@ class User(db.Model):
     def as_dict(self):
         """Returns dictionary of user data"""
 
-        return {"user_id":self.user_id, "fname":self.fname, "petname":self.petname,
-        "bio":self.bio, "profile_img":self.profile_img, "photos":self.photos, "email":self.email,
-        "username":self.username}
+        return {"user_id":f"{self.user_id}", "fname":f"{self.fname}", "petname":f"{self.petname}",
+        "bio":f"{self.bio}", "profile_img":f"{self.profile_img}", "photos":f"{self.photos}", "email":f"{self.email}",
+        "username":f"{self.username}"}
 
 
 
@@ -48,8 +47,9 @@ class Follower(db.Model):
 
     __tablename__ = "followers"
 
-    follower_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    follows_user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    follow_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    follower_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    following_user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     followers = db.Column(db.Integer)
     followers_list = db.Column(db.String)
 
@@ -85,7 +85,7 @@ class Like(db.Model):
     __tablename__ = "likes"
 
     like_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    # user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     photo_id = db.Column(db.Integer, db.ForeignKey("photos.photo_id"))
     num_likes = db.Column(db.Integer)
 

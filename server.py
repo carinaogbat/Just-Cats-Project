@@ -13,6 +13,8 @@ def homepage():
     return render_template('index.html')
 
 
+
+
 @app.route("/api/explorepagephotos")
 def get_all_profile_photos_json():
     """Gets all public user photos returned in json"""
@@ -58,19 +60,18 @@ def display_user_photos_followed():
 
 @app.route('/api/login', methods=["POST"])
 def validate_user_login():
-
     email = request.json.get('email')
     password = request.json.get('password')
     user = crud.get_user_by_email(email)
     if not user or user.password != password:
         flash("Whoops! The email or password you entered is incorrect.")
         print("***Wrong email or password ***")
-        return jsonify({"status":400, "message": "wrong email or password"})
+        return jsonify({"has_account": "false", "status":400, "message": "wrong email or password"})
         #can i get this to pull back to front and show invalid user?
         
     else:
-        valid_user = True
-        return jsonify({"status":200, "message": "succesfully retrived user", "user" : user.as_dict()})
+
+        return jsonify({"has_account":"true", "status":200, "message": "succesfully retrived user", "user" : user.as_dict()})
 
 @app.route('/api/signup', methods=["POST"])
 def sign_up_user():
