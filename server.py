@@ -13,8 +13,6 @@ def homepage():
     return render_template('index.html')
 
 
-
-
 @app.route("/api/explorepagephotos")
 def get_all_profile_photos_json():
     """Gets all public user photos returned in json"""
@@ -101,13 +99,11 @@ def sign_up_user():
             db.session.commit()
 
             if new_user:
-                flash('Congratulations you\'ve created your account!')
                 return jsonify({"status":200, "message": "succesfully created user",
                 'fname':fname, 'profile_img':profile_img, 'pet_name':pet_name, 'pet_bio':pet_bio, 
                 'email':email, 'username':username, 'password':password})
             else:
                 print("***Create user failed***")
-                flash("There was an error creating your account")
                 return jsonify({"status":400, "message": "create user failed"})
 
 
